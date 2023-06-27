@@ -1,7 +1,8 @@
 const { Router } = require('express');
 
 const {
-    validaName
+    validaName,
+    isValidId
 } = require('../middlewares');
 
 const {
@@ -13,7 +14,7 @@ const {
 const router = Router();
 
 
-router.get('/:id', getMessage);
+router.get('/:id', isValidId, getMessage);
 
 router.post('/', validaName, postMessage);
 

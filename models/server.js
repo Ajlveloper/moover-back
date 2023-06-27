@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require('cors');
+const morgan = require('morgan')
 const { dbConnection } = require("../DB/config");
 
 
@@ -24,6 +25,8 @@ class Server {
 
         this.app.use(cors());
 
+        this.app.use(morgan('dev'))
+
         this.app.use(express.json());
 
         this.app.use(express.static('public'));
@@ -36,7 +39,6 @@ class Server {
     }
 
     listen() {
-        // todos endpoints se van a establecer en este puerto establecido
         this.app.listen(this.port, () => {
             console.log(`Runing the port ${this.port}`);
         });

@@ -5,7 +5,7 @@ const getMessage = async (req, res) => {
     const { id } = req.params;
     const message = await Message.findById(id);
 
-    res.json(message);
+    res.status(201).json(message);
 }
 
 

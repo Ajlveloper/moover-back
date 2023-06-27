@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongoose').Types
 const { request, response } = require("express");
 
 
@@ -13,10 +14,21 @@ const validaName = (req = request, res = response, next) => {
 
 }
 
+const isValidId = (req = request, res = response, next) => {
+    const { id } = req.params;
+
+    if(!id) return res.status(400).json({ msg: 'Es obligatorio el id por favor' });
+
+    if (!ObjectId.isValid(id)) return res.status(400).json({ msg: `El valor "${id}" no es un ObjectId válido` });
+
+    next();
+}
+
 
 
 
 
 module.exports = {
     validaName,
+    isValidId,
 }

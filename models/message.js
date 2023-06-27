@@ -21,15 +21,15 @@ const MessageSchema = Schema({
     },
     estado: {
         type: Boolean,
-        require: [true, 'El esstado es requerido']
+        require: [true, 'El estado es requerido']
     }
 }); 
 
 MessageSchema.methods.toJSON = function() {
-    const { __v,  _id, ...usuario  } = this.toObject();
+    const { __v,  _id, ...message  } = this.toObject();
 
-    usuario.uid = _id;
-    return usuario;
+    message.uid = _id;
+    return message;
 }
 
 
